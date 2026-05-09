@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 08: Forms & Inputs</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: whitesmoke;
+            color: #333;
+            padding: 20px;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* 💡 THE FORM ITEM */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        /* Sleek input */
+        input {
+            padding: 12px;
+            border: 1px solid lightgray;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 16px;
+            outline: none;
+            color: #333;
+        }
+
+        /* Input focus state */
+        input:focus {
+            border-color: royalblue;        /* Highlight with royalblue border when active */
+        }
+
+        /* Standard premium button */
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: royalblue;    /* Easy built-in primary color */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Account Register</h1>
+        
+        <form onsubmit="event.preventDefault(); alert('Success!');">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Type username...">
+            </div>
+
+            <button type="submit" class="submit-btn">Continue</button>
+        </form>
+    </div>
+
+</body>
+</html>

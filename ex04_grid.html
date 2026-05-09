@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 04: Grid Basics</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: whitesmoke;
+            color: #333;
+            padding: 20px;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .card-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* 💡 THE GRID CONTAINER */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);  /* Creates 3 equal width columns */
+            gap: 15px;                              /* Modern grid gap */
+        }
+
+        .grid-card {
+            background-color: lightgray;            /* Simple built-in neutral card */
+            color: #333;
+            padding: 20px 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Spans across 2 columns */
+        .grid-featured {
+            grid-column: span 2;
+            background-color: royalblue;            /* Simple built-in primary color highlight */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <h1>Dashboard Grid Layout</h1>
+        
+        <div class="grid-container">
+            <div class="grid-card grid-featured">Featured Content (span 2)</div>
+            <div class="grid-card">Item A</div>
+            <div class="grid-card">Item B</div>
+            <div class="grid-card">Item C</div>
+            <div class="grid-card">Item D</div>
+        </div>
+    </div>
+
+</body>
+</html>

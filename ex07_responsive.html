@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 07: Responsive Design</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: whitesmoke;
+            color: #333;
+            padding: 20px;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 550px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* 💡 THE RESPONSIVE FLEXBOX CONTAINER */
+        .container {
+            display: flex;
+            flex-direction: column;         /* MOBILE FIRST: Stack items vertically */
+            gap: 12px;
+        }
+
+        .box {
+            background-color: lightgray;    /* Standard light neutral block */
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* 💡 DESKTOP BREAKPOINT (600px screen widths or larger) */
+        @media (min-width: 600px) {
+            .container {
+                flex-direction: row;        /* Switches items side-by-side on desktop */
+            }
+            .box {
+                flex: 1;                    /* Share row space evenly */
+                background-color: royalblue;/* Turns beautiful royalblue on desktop screens */
+                color: white;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Responsive Breakpoints</h1>
+        <p>Resize your browser window! Stacks on mobile; side-by-side royalblue boxes on desktop.</p>
+        
+        <div class="container">
+            <div class="box">Section A</div>
+            <div class="box">Section B</div>
+        </div>
+    </div>
+
+</body>
+</html>

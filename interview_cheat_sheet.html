@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Frontend Interview CSS Cheat Sheet</title>
+    <style>
+        /* --- 💡 GLOBAL RESET --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: whitesmoke;
+            color: #333;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* --- HEADER --- */
+        .sheet-header {
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 10px;
+        }
+
+        .sheet-header h1 {
+            color: #333;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .sheet-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* --- PREMIUM CARD DESIGN --- */
+        .recipe-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .recipe-card h2 {
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 8px;
+            border-left: 4px solid royalblue;
+            padding-left: 10px;
+        }
+
+        .recipe-card p {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        /* Clean, high-contrast code box */
+        pre {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        /* --- RECIPE RENDERS --- */
+
+        /* 1. Centering */
+        .render-center {
+            display: grid;
+            place-items: center;
+            height: 120px;
+            background-color: lightgray;
+            border-radius: 8px;
+        }
+        .center-box {
+            background-color: royalblue;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        /* 2. Flex Stack */
+        .render-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .stack-item {
+            background-color: lightgray;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* 3. Split Flex */
+        .render-split {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: lightgray;
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+        .btn-logout {
+            background-color: tomato;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* 4. Responsive Grid */
+        .render-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        .grid-cell {
+            background-color: lightgray;
+            color: royalblue;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* 5. Sleek Form Formats */
+        .custom-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid lightgray;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+            margin-bottom: 12px;
+            color: #333;
+        }
+        .custom-input:focus {
+            border-color: royalblue;
+        }
+        .submit-btn {
+            background-color: royalblue;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: inherit;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="sheet-header">
+        <h1>⚡ High-Velocity CSS Recipes</h1>
+        <p>The 5 absolute simplest, most elegant layout recipes you need to style components instantly during frontend coding interviews.</p>
+    </header>
+
+    <!-- RECIPE 1 -->
+    <div class="recipe-card">
+        <h2>1. Perfect Centering (Modals & Cards)</h2>
+        <p>Instantly center any child horizontally and vertically inside a parent wrapper using just 2 lines of CSS.</p>
+        <pre>
+.parent {
+    display: grid;
+    place-items: center;
+    height: 120px;
+}</pre>
+        <div class="render-center">
+            <div class="center-box">Perfectly Centered</div>
+        </div>
+    </div>
+
+    <!-- RECIPE 2 -->
+    <div class="recipe-card">
+        <h2>2. Vertical Stack (Todo Lists & Feed Items)</h2>
+        <p>Flow items vertically and space them apart automatically without messing around with margins.</p>
+        <pre>
+.parent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}</pre>
+        <div class="render-stack">
+            <div class="stack-item">Todo Task A</div>
+            <div class="stack-item">Todo Task B</div>
+        </div>
+    </div>
+
+    <!-- RECIPE 3 -->
+    <div class="recipe-card">
+        <h2>3. Horizontal Split (Header & Navbar rows)</h2>
+        <p>Push items to the outer edges while keeping them perfectly aligned vertically.</p>
+        <pre>
+.parent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}</pre>
+        <div class="render-split">
+            <strong>AppLogo</strong>
+            <button class="btn-logout">Logout</button>
+        </div>
+    </div>
+
+    <!-- RECIPE 4 -->
+    <div class="recipe-card">
+        <h2>4. Responsive Card Grid (No media queries)</h2>
+        <p>An elegant grid system that fits seamlessly on both mobile and desktop screen sizes automatically.</p>
+        <pre>
+.parent {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}</pre>
+        <div class="render-grid">
+            <div class="grid-cell">Card 1</div>
+            <div class="grid-cell">Card 2</div>
+            <div class="grid-cell">Card 3</div>
+        </div>
+    </div>
+
+    <!-- RECIPE 5 -->
+    <div class="recipe-card">
+        <h2>5. Elegant Interactive Form Group</h2>
+        <p>Quickly build high-end input text fields with clear labels and a focus highlight state.</p>
+        <pre>
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    outline: none;
+}
+input:focus {
+    border-color: royalblue;
+}</pre>
+        <form onsubmit="event.preventDefault(); alert('Logged In!');">
+            <input type="text" class="custom-input" placeholder="Type your email..." required>
+            <button type="submit" class="submit-btn">Continue</button>
+        </form>
+    </div>
+
+</body>
+</html>

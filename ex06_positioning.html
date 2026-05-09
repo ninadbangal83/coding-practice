@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 06: Positioning</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: whitesmoke;
+            color: #333;
+            padding: 20px;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* 💡 THE ANCHOR CONTAINER (Relative Parent) */
+        .parent {
+            position: relative;             /* Coordinate boundary for absolute children */
+            width: 100%;
+            height: 160px;
+            background-color: lightgray;
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 💡 THE FLOATING BADGE (Absolute Child) */
+        .absolute-badge {
+            position: absolute;             /* Place precisely anywhere inside parent container */
+            top: 15px;                      /* 15px from top boundary */
+            right: 15px;                    /* 15px from right boundary */
+            
+            background-color: tomato;       /* Easy-to-remember warm reddish-orange warning */
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Relative & Absolute</h1>
+        
+        <div class="parent">
+            <!-- Floats absolute in top-right corner of .parent -->
+            <div class="absolute-badge">tomato</div>
+            
+            <p>This lightgray card acts as a <code>relative</code> parent. The tomato badge floats cleanly inside it as an <code>absolute</code> child.</p>
+        </div>
+    </div>
+
+</body>
+</html>

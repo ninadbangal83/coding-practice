@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 03: Flexbox Basics</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: whitesmoke;
+            color: #333;
+            padding: 20px;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 550px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* 💡 THE FLEXBOX CONTAINER */
+        .flex-container {
+            display: flex;                  /* Activates Flexbox */
+            flex-direction: row;            /* Flow items horizontally */
+            justify-content: space-between; /* Space items out evenly */
+            align-items: center;            /* Centered vertically */
+            gap: 12px;                      /* Clean spacing gap between items */
+            
+            background-color: lightgray;    /* Simple built-in container background */
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        /* Flex Children */
+        .flex-item {
+            background-color: royalblue;    /* Simple built-in primary color */
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            flex-grow: 1;                   /* Make items expand evenly to fill container width */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Flexbox Row Align</h1>
+        
+        <div class="flex-container">
+            <div class="flex-item">Item 1</div>
+            <div class="flex-item">Item 2</div>
+            <div class="flex-item">Item 3</div>
+        </div>
+    </div>
+
+</body>
+</html>

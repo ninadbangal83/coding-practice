@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 05: Animations</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: whitesmoke;
+            color: #333;
+            padding: 20px;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        /* 💡 1. SMOOTH TRANSITION COMPONENT */
+        .hover-box {
+            background-color: lightgray;
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 30px;
+            
+            /* Tells browser to animate transforms smoothly */
+            transition: transform 0.2s ease; 
+        }
+
+        .hover-box:hover {
+            background-color: royalblue;                     /* Changes to royalblue on hover */
+            color: white;
+            transform: translateY(-6px) scale(1.02);         /* Rise and expand slightly */
+        }
+
+        /* 💡 2. LOADING SPINNER COMPONENT */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid lightgray;
+            border-top: 4px solid royalblue;                 /* Simple built-in primary spinner */
+            border-radius: 50%;
+            margin: 0 auto;
+            
+            /* Spin infinitely over 1 second smoothly */
+            animation: spin 1s infinite linear; 
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Transitions & Animations</h1>
+        
+        <div class="hover-box">Hover over me!</div>
+        <div class="spinner"></div>
+    </div>
+
+</body>
+</html>
