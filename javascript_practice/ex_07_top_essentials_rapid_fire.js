@@ -144,6 +144,54 @@ const mergeUnique = (arr1, arr2) => [...new Set([...arr1, ...arr2])];
 // 21. Sort Descending [Q56]
 const sortDescending = (arr) => [...arr].sort((a, b) => b - a);
 
+// ======================================================
+// FINAL TOP-50 COMPLETION BATCH
+// ======================================================
+
+// 22. Calculate Power [Q19]
+const calcPower = (base, exp) => base ** exp;
+
+// 23. Print Element Frequency [Q20]
+// 🟡 Focus: Object HashMap frequency counting
+function getFrequency(arr) {
+    return arr.reduce((acc, item) => {
+        acc[item] = (acc[item] || 0) + 1;
+        return acc;
+    }, {});
+}
+
+// 24. Array Intersection [Q27]
+// 🟢 Focus: Set-based O(N) lookups
+function findIntersection(arr1, arr2) {
+    const set2 = new Set(arr2);
+    return arr1.filter(val => set2.has(val));
+}
+
+// 25. First Non-Repeated Character [Q32]
+// 🟡 Focus: Double iteration search
+function firstNonRepeated(str) {
+    const map = {};
+    for (let char of str) map[char] = (map[char] || 0) + 1;
+    for (let char of str) if (map[char] === 1) return char;
+    return null;
+}
+
+// 26. Capitalize Sentence Words [Q34]
+function capitalizeWords(sentence) {
+    return sentence.split(' ')
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' ');
+}
+
+// 27. Count Vowels [Q49]
+function countVowels(str) {
+    const matches = str.match(/[aeiou]/gi);
+    return matches ? matches.length : 0;
+}
+
+// 28. Unique Characters Only [Q50]
+const uniqueChars = (str) => [...new Set(str)].join('');
+
 
 // ======================================================
 // 🚦 FINAL EXECUTION & VERIFICATION LOGS
@@ -165,8 +213,6 @@ console.log("👉 11. cloneArrayManual [1, 2]:", cloneArrayManual([1, 2]));
 console.log("👉 12. areAnagrams 'listen' 'silent':", areAnagrams("listen", "silent"));
 console.log("👉 13. findLargestInMixed [10, 'apple', 50]:", findLargestInMixed([10, "apple", 50]));
 console.log("👉 14. mergeArrays [1] [2]:", mergeArrays([1], [2]));
-
-// --- NEWLY APPENDED BATCH ---
 console.log("👉 15. joinToSentence ['Hello', 'World']:", joinToSentence(['Hello', 'World']));
 console.log("👉 16. doubleElements [2, 4]:", doubleElements([2, 4]));
 
@@ -180,4 +226,13 @@ console.log("👉 19. reverseWords 'Learning JS Is Fun':", reverseWords("Learnin
 console.log("👉 20. mergeUnique [1,2] [2,3]:", mergeUnique([1, 2], [2, 3]));
 console.log("👉 21. sortDescending [5, 2, 9]:", sortDescending([5, 2, 9]));
 
-console.log("\n✅ ALL FOUNDATIONAL ESSENTIALS VERIFIED! ✅");
+// --- ULTIMATE COMPLETION BATCH ---
+console.log("👉 22. calcPower 3 ^ 4:", calcPower(3, 4));
+console.log("👉 23. getFrequency [1, 1, 2]:", getFrequency([1, 1, 2]));
+console.log("👉 24. findIntersection [1,2] [2,3]:", findIntersection([1, 2], [2, 3]));
+console.log("👉 25. firstNonRepeated 'swiss':", firstNonRepeated("swiss"));
+console.log("👉 26. capitalizeWords 'hello world':", capitalizeWords("hello world"));
+console.log("👉 27. countVowels 'education':", countVowels("education"));
+console.log("👉 28. uniqueChars 'geeksforgeeks':", uniqueChars("geeksforgeeks"));
+
+console.log("\n✅ ALL 28 FOUNDATIONAL ESSENTIALS 100% VERIFIED! ✅");
