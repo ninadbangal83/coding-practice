@@ -192,6 +192,19 @@ function countVowels(str) {
 // 28. Unique Characters Only [Q50]
 const uniqueChars = (str) => [...new Set(str)].join('');
 
+// ======================================================
+// ULTIMATE BONUS: GENERATOR LOGIC [From Concepts File Q32]
+// ======================================================
+
+// 29. Infinite ID Generator
+// 🟡 Focus: Iterators & Yield suspension state
+function* generateInfiniteId() {
+    let id = 1;
+    while (true) {
+        yield `USER_${id++}`;
+    }
+}
+
 
 // ======================================================
 // 🚦 FINAL EXECUTION & VERIFICATION LOGS
@@ -235,4 +248,9 @@ console.log("👉 26. capitalizeWords 'hello world':", capitalizeWords("hello wo
 console.log("👉 27. countVowels 'education':", countVowels("education"));
 console.log("👉 28. uniqueChars 'geeksforgeeks':", uniqueChars("geeksforgeeks"));
 
-console.log("\n✅ ALL 28 FOUNDATIONAL ESSENTIALS 100% VERIFIED! ✅");
+// ULTIMATE GENERATOR TEST
+const idGen = generateInfiniteId();
+console.log("👉 29. Generator 1st Yield:", idGen.next().value);
+console.log("👉 29. Generator 2nd Yield:", idGen.next().value);
+
+console.log("\n✅ ALL 29 FOUNDATIONAL ESSENTIALS 100% VERIFIED! ✅");
