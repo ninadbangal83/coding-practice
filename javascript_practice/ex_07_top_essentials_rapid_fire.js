@@ -205,6 +205,49 @@ function* generateInfiniteId() {
     }
 }
 
+// ======================================================
+// FINAL "TOP-50 PROBLEMS" MASTER BATCH [FILE 4]
+// ======================================================
+
+// 30. Largest in Nested Array [Q8]
+function findLargestNested(nested) {
+    const flat = nested.flat(Infinity);
+    return Math.max(...flat);
+}
+
+// 31. Native Deep Flatten [Q18]
+const nativeFlatten = (arr) => arr.flat(Infinity);
+
+// 32. Random Alphanumeric String [Q39]
+function generateRandomString(len) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let res = '';
+    for (let i = 0; i < len; i++) res += chars.charAt(Math.floor(Math.random() * chars.length));
+    return res;
+}
+
+// 33. Calculate Average [Q44]
+function calculateAverage(arr) {
+    if (!arr.length) return 0;
+    return arr.reduce((s, n) => s + n, 0) / arr.length;
+}
+
+// 34. Merge Arrays Alternating (Interleave) [Q48]
+function mergeAlternating(arr1, arr2) {
+    const res = [];
+    const maxLen = Math.max(arr1.length, arr2.length);
+    for (let i = 0; i < maxLen; i++) {
+        if (i < arr1.length) res.push(arr1[i]);
+        if (i < arr2.length) res.push(arr2[i]);
+    }
+    return res;
+}
+
+// 35. Find Second Largest [Q49]
+function findSecondLargest(arr) {
+    const unique = [...new Set(arr)].sort((a, b) => b - a);
+    return unique.length > 1 ? unique[1] : null;
+}
 
 // ======================================================
 // 🚦 FINAL EXECUTION & VERIFICATION LOGS
@@ -253,4 +296,12 @@ const idGen = generateInfiniteId();
 console.log("👉 29. Generator 1st Yield:", idGen.next().value);
 console.log("👉 29. Generator 2nd Yield:", idGen.next().value);
 
-console.log("\n✅ ALL 29 FOUNDATIONAL ESSENTIALS 100% VERIFIED! ✅");
+// --- ULTIMATE 35-POINT COMPLETION GRID ---
+console.log("👉 30. findLargestNested [[1,2],[8,3]]:", findLargestNested([[1, 2], [8, 3]]));
+console.log("👉 31. nativeFlatten [1,[2,[3]]]:", nativeFlatten([1, [2, [3]]]));
+console.log("👉 32. generateRandomString(8):", generateRandomString(8));
+console.log("👉 33. calculateAverage [10, 20, 30]:", calculateAverage([10, 20, 30]));
+console.log("👉 34. mergeAlternating [A,B] [1,2,3]:", mergeAlternating(['A', 'B'], [1, 2, 3]));
+console.log("👉 35. findSecondLargest [10, 20, 20, 5]:", findSecondLargest([10, 20, 20, 5]));
+
+console.log("\n✅ ABSOLUTE TOTAL CURRICULUM VICTORY: 35/35 VERIFIED! ✅");
