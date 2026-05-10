@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accessible Modal Popup Dialog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h2>Component Sandbox</h2>
+        <p class="meta">Test advanced z-index stacking and overlay click listeners.</p>
+        <button id="trigger-btn" class="main-btn">Launch Modal Popup</button>
+    </div>
+
+    <!-- OVERLAY LAYER (Initially Hidden) -->
+    <div class="modal-overlay" id="overlay">
+        <!-- MODAL CONTENT BOX -->
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Security Confirmation</h3>
+                <button class="close-x" id="close-icon">&times;</button>
+            </div>
+            <div class="modal-body">
+                Are you certain you wish to apply these modifications permanently to your production cluster environment?
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" id="cancel-btn">Cancel</button>
+                <button class="btn-confirm" id="confirm-btn">Proceed</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

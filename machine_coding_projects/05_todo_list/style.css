@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+body {
+  background: whitesmoke;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px;
+}
+h2 {
+  color: royalblue;
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.input-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 15px;
+}
+input:focus {
+  border-color: royalblue;
+}
+#add-btn {
+  background: royalblue;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#todo-list {
+  list-style: none;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  font-size: 15px;
+  color: #444;
+}
+.del-btn {
+  background: none;
+  border: none;
+  color: red;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 16px;
+}
+.del-btn:hover {
+  transform: scale(1.2);
+}

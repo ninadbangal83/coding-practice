@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+body {
+  background: whitesmoke;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+h2 {
+  color: royalblue;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.instructions {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 25px;
+}
+.drop-zone {
+  min-height: 100px;
+  background: #f9f9f9;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+.drag-token {
+  background: royalblue;
+  color: white;
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 8px;
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 4px 8px rgba(65, 105, 225, 0.3);
+}
+.drag-token:active {
+  cursor: grabbing;
+}
+.drop-zone.drag-over {
+  background: #eee;
+  border-color: royalblue;
+}

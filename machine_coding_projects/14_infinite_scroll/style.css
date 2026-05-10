@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+body {
+  background: whitesmoke;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 450px;
+}
+h2 {
+  color: royalblue;
+  font-size: 20px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.meta {
+  color: #888;
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.scroll-container {
+  height: 350px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #f9f9f9;
+  padding: 15px;
+}
+.scroll-item {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  font-weight: bold;
+  color: #444;
+  transition: opacity 0.3s ease-in;
+}
+.loading-indicator {
+  text-align: center;
+  color: royalblue;
+  font-weight: 600;
+  padding: 10px;
+  font-size: 14px;
+}
+/* Simple custom scrollbar look */
+.scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}

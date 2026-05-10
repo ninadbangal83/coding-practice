@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Throttled Execution Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h2>Throttled Logic</h2>
+        <p class="meta">Spam the button as fast as you can. Only one execution fires per 1.5 seconds.</p>
+        
+        <button id="spam-btn" class="action-btn">CLICK FAST ⚡</button>
+        
+        <div class="stats-grid">
+            <div class="box">
+                <span>Raw User Clicks</span>
+                <strong id="raw-count">0</strong>
+            </div>
+            <div class="box active">
+                <span>Actual Fires</span>
+                <strong id="fire-count">0</strong>
+            </div>
+        </div>
+
+        <div class="status-log" id="log-panel">
+            Waiting for user input...
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

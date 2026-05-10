@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+body {
+  background: whitesmoke;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+}
+h2 { color: royalblue; font-size: 20px; margin-bottom: 8px; }
+.meta { font-size: 13px; color: #777; margin-bottom: 25px; }
+
+.action-btn {
+  background: royalblue;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 25px;
+  transition: transform 0.1s;
+}
+.action-btn:active { transform: scale(0.95); }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.box {
+  padding: 15px;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.box span { font-size: 12px; font-weight: bold; color: #666; text-transform: uppercase; }
+.box strong { font-size: 28px; color: #333; }
+.box.active { background: lightyellow; border-color: orange; }
+.box.active strong { color: orange; }
+
+.status-log {
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  min-height: 45px;
+  display: grid;
+  place-items: center;
+}
+.status-log.triggered {
+  background: green;
+  color: white;
+}

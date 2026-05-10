@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Debounced API Call Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h2>Debounced Network Logic</h2>
+        <p class="meta">Typing fires immediate events, but wait 500ms to trigger the "Network API".</p>
+        
+        <input type="text" id="search-box" placeholder="Type really fast..." autofocus>
+        
+        <div class="stats-box">
+            <div>⚡ Keystrokes: <span id="key-count" class="badge">0</span></div>
+            <div>📡 API Requests Sent: <span id="api-count" class="badge active">0</span></div>
+        </div>
+        
+        <div id="api-logs">
+            <!-- Logger injection here -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

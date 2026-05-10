@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+body {
+  background: whitesmoke;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 450px;
+}
+h2 { color: royalblue; text-align: center; font-size: 20px; margin-bottom: 20px; }
+
+/* --- FRAME SETUP --- */
+.carousel-frame {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.image-container { width: 100%; height: 100%; }
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers space without distorting */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* --- NAVIGATION --- */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s;
+}
+.nav-btn:hover { background: rgba(0, 0, 0, 0.7); }
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* --- DOT INDICATORS --- */
+.dots-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.dot.active {
+  background: royalblue;
+  transform: scale(1.2);
+}

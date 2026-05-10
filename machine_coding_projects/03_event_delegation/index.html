@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Delegation Playground</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h2>Action Menu (Delegated)</h2>
+        <p class="hint">Single listener monitors this entire grid for clicks:</p>
+        <div class="action-grid" id="parent-container">
+            <button class="action-btn" data-name="Save">Save 💾</button>
+            <button class="action-btn" data-name="Upload">Upload ☁️</button>
+            <button class="action-btn" data-name="Delete">Delete 🗑️</button>
+            <button class="action-btn" data-name="Settings">Settings ⚙️</button>
+        </div>
+        <div id="event-log">Click any button above!</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+body {
+  background: whitesmoke;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 450px;
+}
+h2 {
+  color: royalblue;
+  font-size: 20px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.meta {
+  font-size: 13px;
+  color: #777;
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  outline: none;
+}
+input:focus {
+  border-color: royalblue;
+}
+.stats-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+.badge {
+  background: #eee;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.badge.active {
+  background: royalblue;
+  color: white;
+}
+#api-logs {
+  background: #f9f9f9;
+  color: #444;
+  font-family: monospace;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  height: 120px;
+  overflow-y: auto;
+  font-size: 12px;
+  line-height: 1.5;
+}
+#api-logs div {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+#api-logs b {
+  color: royalblue;
+}
+#api-logs::-webkit-scrollbar {
+  width: 6px;
+}
+#api-logs::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 3px;
+}

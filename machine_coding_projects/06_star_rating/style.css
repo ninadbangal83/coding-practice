@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+body {
+  background: whitesmoke;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+}
+h2 {
+  color: royalblue;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.star-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.star {
+  font-size: 45px;
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.15s;
+  user-select: none;
+}
+.star.hovered,
+.star.locked {
+  color: gold;
+}
+.score-box {
+  background: lightyellow;
+  color: orange;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
