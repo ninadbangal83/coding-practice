@@ -1,0 +1,39 @@
+.sub-text {
+  font-size: 13px;
+  color: #777;
+  text-align: center;
+  margin-bottom: 25px;
+}
+.stars-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+.star-icon {
+  font-size: 45px;
+  cursor: pointer;
+  color: #ddd;
+  transition: transform 0.2s, color 0.15s;
+}
+.star-icon:hover {
+  transform: scale(1.2);
+}
+.star-icon.active {
+  color: gold;
+}
+.feedback-box {
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #666;
+  background: #f9f9f9;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+.feedback-box.visible {
+  background: lightyellow;
+  border-color: orange;
+  color: orange;
+}

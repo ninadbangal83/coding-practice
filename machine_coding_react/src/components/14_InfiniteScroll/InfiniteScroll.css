@@ -1,0 +1,41 @@
+.scroll-viewport {
+  height: 300px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #f9f9f9;
+  overflow-y: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scrolling-node {
+  background: white;
+  border: 1px solid #eee;
+  padding: 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+  animation: slideRightIn 0.3s ease-out;
+  color: #444;
+}
+@keyframes slideRightIn { from { opacity: 0; transform: translateX(-5px); } to { opacity: 1; transform: translateX(0); } }
+
+.loading-hook-marker {
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: royalblue;
+  min-height: 60px;
+}
+
+.loading-react-anim {
+  animation: pulseLoad 1.2s infinite alternate;
+}
+@keyframes pulseLoad { from { opacity: 0.5; } to { opacity: 1; } }
+
+/* Custom standard scrollbar */
+.scroll-viewport::-webkit-scrollbar { width: 6px; }
+.scroll-viewport::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }

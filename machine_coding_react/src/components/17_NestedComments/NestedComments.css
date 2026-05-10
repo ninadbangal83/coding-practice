@@ -1,0 +1,81 @@
+.bigger-card { max-width: 600px !important; }
+.thread-viewport {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.comment-block {
+  margin-top: 12px;
+  animation: softEnter 0.3s ease;
+}
+@keyframes softEnter { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; } }
+
+.comment-content-rect {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.author-tag {
+  color: royalblue;
+  font-size: 14px;
+}
+.text-body {
+  margin-top: 5px;
+  color: #444;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+.act-link {
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+}
+.act-link:hover { text-decoration: underline; color: royalblue; }
+.act-link.delete { color: red; }
+
+.reply-input-row {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  animation: expand 0.2s ease;
+}
+@keyframes expand { from { opacity: 0; } to { opacity: 1; } }
+.reply-input-row input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+}
+.reply-input-row input:focus { border-color: royalblue; }
+.reply-input-row button {
+  background: royalblue;
+  color: white;
+  border: none;
+  padding: 0 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* --- THE NESTING LOGIC --- */
+.replies-branch {
+  margin-left: 20px;
+  padding-left: 15px;
+  border-left: 2px solid #eee;
+}

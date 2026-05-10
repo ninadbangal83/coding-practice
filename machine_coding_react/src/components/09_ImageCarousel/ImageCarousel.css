@@ -1,0 +1,58 @@
+.carousel-window {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+.active-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: softFade 0.4s ease;
+}
+@keyframes softFade {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+.arr {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.arr:hover { background: rgba(0,0,0,0.7); }
+.left-arr { left: 10px; }
+.right-arr { right: 10px; }
+
+.dot-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+.dot-bubble {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.dot-bubble.active {
+  background: royalblue;
+  transform: scale(1.3);
+}

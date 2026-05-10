@@ -1,0 +1,54 @@
+.sub-meta {
+  font-size: 13px;
+  color: #777;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.parent-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+.action-chip {
+  padding: 12px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #444;
+  transition: all 0.2s;
+}
+.action-chip:hover {
+  border-color: royalblue;
+  color: royalblue;
+  background: whitesmoke;
+}
+.log-viewer {
+  min-height: 120px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  padding: 15px;
+  font-family: monospace;
+  font-size: 13px;
+}
+.log-entry {
+  background: lightgreen;
+  color: darkgreen;
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  animation: slideIn 0.2s ease;
+}
+.empty { color: #888; font-style: italic; text-align: center; display: block; width: 100%; margin-top: 35px;}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}

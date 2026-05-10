@@ -1,0 +1,78 @@
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: 100vh;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  background: white;
+  border-right: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+}
+.sidebar-header {
+  padding: 25px 20px;
+  border-bottom: 1px solid #eee;
+}
+.sidebar-header h1 {
+  font-size: 18px;
+  color: royalblue;
+}
+.sidebar-header p {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+.nav-list {
+  list-style: none;
+  padding: 15px;
+}
+.nav-item {
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #555;
+}
+.nav-item:hover {
+  background: whitesmoke;
+  color: royalblue;
+}
+.nav-item.active {
+  background: royalblue;
+  color: white;
+  box-shadow: 0 4px 10px rgba(65, 105, 225, 0.3);
+}
+
+/* --- MAIN CONTENT AREA --- */
+.content-viewer {
+  padding: 40px;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+}
+.welcome-screen {
+  text-align: center;
+  color: #888;
+}
+
+/* Global Reusable Card Style for all Sub-Components */
+.react-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 450px;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

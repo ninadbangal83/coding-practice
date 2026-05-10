@@ -1,0 +1,30 @@
+.react-card h2 {
+  text-align: center;
+  color: royalblue;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.counter-display {
+  font-size: 64px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+.counter-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.btn-react {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  background: royalblue;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn-react:hover { opacity: 0.9; }
+.btn-react.reset { background: grey; }

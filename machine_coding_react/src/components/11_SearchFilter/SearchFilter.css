@@ -1,0 +1,50 @@
+.filter-input-wrap { margin-bottom: 10px; }
+.filter-box {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+.filter-box:focus { border-color: royalblue; }
+
+.filter-results-meta {
+  font-size: 12px;
+  color: #888;
+  text-align: right;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.filter-results-meta strong { color: royalblue; }
+
+.grid-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  height: 200px; /* Static baseline height prevention established in earlier audits */
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.grid-bubble {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #444;
+  font-size: 14px;
+  animation: growIn 0.2s ease;
+}
+@keyframes growIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+.zero-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #bbb;
+  margin-top: 40px;
+  font-style: italic;
+}

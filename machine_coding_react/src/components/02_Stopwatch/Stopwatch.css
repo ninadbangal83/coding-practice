@@ -1,0 +1,30 @@
+.timer-display {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  font-family: monospace;
+  margin-bottom: 25px;
+  color: #333;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+.timer-controls {
+  display: flex;
+  gap: 12px;
+}
+.btn-timer {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+  letter-spacing: 1px;
+}
+.btn-timer.start { background: green; }
+.btn-timer.pause { background: orange; }
+.btn-timer.reset { background: grey; }

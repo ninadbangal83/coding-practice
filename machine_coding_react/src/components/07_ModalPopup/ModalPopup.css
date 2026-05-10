@@ -1,0 +1,53 @@
+.central-card { text-align: center; }
+.btn-launch {
+  background: royalblue;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* --- MODAL LAYERING --- */
+.react-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  animation: fadeInMod 0.2s ease-out;
+}
+.react-modal-box {
+  background: white;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(0);
+  animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.r-modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.r-modal-header h3 { font-size: 18px; color: #333; }
+.btn-close-x { background: none; border: none; font-size: 24px; cursor: pointer; color: #aaa; }
+.r-modal-body { padding: 20px; font-size: 15px; color: #555; line-height: 1.5; text-align: left; }
+.r-modal-footer { padding: 15px 20px; background: #f9f9f9; display: flex; justify-content: flex-end; gap: 10px; }
+.btn-lite { background: white; border: 1px solid #ccc; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+.btn-prime { background: royalblue; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+
+@keyframes fadeInMod { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popUp { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
