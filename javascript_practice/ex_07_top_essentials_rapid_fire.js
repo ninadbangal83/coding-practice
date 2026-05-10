@@ -83,6 +83,35 @@ function factorial(n) {
     return n * factorial(n - 1);
 }
 
+// 11. Array Cloning Loop [Q18]
+function cloneArrayManual(arr) {
+    const newArray = [];
+    for (let i = 0; i < arr.length; i++) {
+        newArray.push(arr[i]);
+    }
+    return newArray;
+}
+
+// 12. Are Anagrams [Q21]
+// 🟢 Focus: Character normalization mapping
+function areAnagrams(str1, str2) {
+    const norm = (s) => s.toLowerCase().replace(/[^a-z]/g, '').split('').sort().join('');
+    return norm(str1) === norm(str2);
+}
+
+// 13. Find Largest in Mixed Type Array [Q22]
+// 🟡 Focus: Filter with Math spread syntax
+function findLargestInMixed(arr) {
+    const numbers = arr.filter(item => typeof item === 'number');
+    return numbers.length > 0 ? Math.max(...numbers) : -Infinity;
+}
+
+// 14. Merge Arrays Without Concat [Q23]
+// 🟢 Focus: ES6 Spread Operator unpacking
+function mergeArrays(arr1, arr2) {
+    return [...arr1, ...arr2];
+}
+
 
 // ======================================================
 // 🚦 FINAL EXECUTION & VERIFICATION LOGS
@@ -90,15 +119,21 @@ function factorial(n) {
 
 console.log("🔥 INITIATING TOP ESSENTIALS RAPID FIRE TESTS 🔥\n");
 
-console.log("👉 1. sumArray [1,2,3,4]:", sumArray([1, 2, 3, 4])); // Expect 10
-console.log("👉 2. isPalindrome 'racecar':", isPalindrome("racecar")); // Expect true
-console.log("👉 3. reverseString 'hello':", reverseString("hello")); // Expect olleh
-console.log("👉 4. findMaxDifference [10, 2, 30, 5]:", findMaxDifference([10, 2, 30, 5])); // Expect 28 (30-2)
-console.log("👉 5. isPrime(17):", isPrime(17)); // Expect true
-console.log("👉 6. removeFalsyValues [0, 1, false, 2, '', 3]:", removeFalsyValues([0, 1, false, 2, '', 3])); // Expect [1, 2, 3]
-console.log("👉 7. fibonacciSequence(6):", fibonacciSequence(6)); // Expect [0, 1, 1, 2, 3, 5]
+console.log("👉 1. sumArray [1,2,3,4]:", sumArray([1, 2, 3, 4])); 
+console.log("👉 2. isPalindrome 'racecar':", isPalindrome("racecar")); 
+console.log("👉 3. reverseString 'hello':", reverseString("hello")); 
+console.log("👉 4. findMaxDifference [10, 2, 30, 5]:", findMaxDifference([10, 2, 30, 5])); 
+console.log("👉 5. isPrime(17):", isPrime(17)); 
+console.log("👉 6. removeFalsyValues [0, 1, false, 2, '', 3]:", removeFalsyValues([0, 1, false, 2, '', 3])); 
+console.log("👉 7. fibonacciSequence(6):", fibonacciSequence(6)); 
 console.log("👉 8. convertArrayToObject:", convertArrayToObject([{id: 'a1', value: 'Apples'}, {id: 'b2', value: 'Bananas'}]));
-console.log("👉 9. removeDuplicates [1,1,2,3,3]:", removeDuplicates([1, 1, 2, 3, 3])); // Expect [1, 2, 3]
-console.log("👉 10. factorial(5):", factorial(5)); // Expect 120
+console.log("👉 9. removeDuplicates [1,1,2,3,3]:", removeDuplicates([1, 1, 2, 3, 3])); 
+console.log("👉 10. factorial(5):", factorial(5)); 
+
+// NEW BATCH TESTS
+console.log("👉 11. cloneArrayManual [1, 2]:", cloneArrayManual([1, 2]));
+console.log("👉 12. areAnagrams 'listen' 'silent':", areAnagrams("listen", "silent"));
+console.log("👉 13. findLargestInMixed [10, 'apple', 50]:", findLargestInMixed([10, "apple", 50]));
+console.log("👉 14. mergeArrays [1] [2]:", mergeArrays([1], [2]));
 
 console.log("\n✅ ALL FOUNDATIONAL ESSENTIALS VERIFIED! ✅");
