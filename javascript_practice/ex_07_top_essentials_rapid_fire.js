@@ -112,6 +112,38 @@ function mergeArrays(arr1, arr2) {
     return [...arr1, ...arr2];
 }
 
+// 15. Convert String Array to Sentence [Q26]
+function joinToSentence(arr) {
+    return arr.join(' ');
+}
+
+// 16. Double Array Elements [Q27]
+function doubleElements(arr) {
+    return arr.map(x => x * 2);
+}
+
+// 17. Private Counter Closure [Q33]
+// 🟡 Focus: Persistent lexical state
+function createCounter() {
+    let count = 0;
+    return {
+        increment: () => { count++; },
+        getValue: () => count
+    };
+}
+
+// 18. Get First 5 Elements [Q45]
+const getFirstFive = (arr) => arr.slice(0, 5);
+
+// 19. Reverse Order of Words [Q46]
+const reverseWords = (sentence) => sentence.split(' ').reverse().join(' ');
+
+// 20. Merge & Unique Arrays [Q50]
+const mergeUnique = (arr1, arr2) => [...new Set([...arr1, ...arr2])];
+
+// 21. Sort Descending [Q56]
+const sortDescending = (arr) => [...arr].sort((a, b) => b - a);
+
 
 // ======================================================
 // 🚦 FINAL EXECUTION & VERIFICATION LOGS
@@ -129,11 +161,23 @@ console.log("👉 7. fibonacciSequence(6):", fibonacciSequence(6));
 console.log("👉 8. convertArrayToObject:", convertArrayToObject([{id: 'a1', value: 'Apples'}, {id: 'b2', value: 'Bananas'}]));
 console.log("👉 9. removeDuplicates [1,1,2,3,3]:", removeDuplicates([1, 1, 2, 3, 3])); 
 console.log("👉 10. factorial(5):", factorial(5)); 
-
-// NEW BATCH TESTS
 console.log("👉 11. cloneArrayManual [1, 2]:", cloneArrayManual([1, 2]));
 console.log("👉 12. areAnagrams 'listen' 'silent':", areAnagrams("listen", "silent"));
 console.log("👉 13. findLargestInMixed [10, 'apple', 50]:", findLargestInMixed([10, "apple", 50]));
 console.log("👉 14. mergeArrays [1] [2]:", mergeArrays([1], [2]));
+
+// --- NEWLY APPENDED BATCH ---
+console.log("👉 15. joinToSentence ['Hello', 'World']:", joinToSentence(['Hello', 'World']));
+console.log("👉 16. doubleElements [2, 4]:", doubleElements([2, 4]));
+
+const counter = createCounter();
+counter.increment();
+counter.increment();
+console.log("👉 17. createCounter (Double Increment):", counter.getValue());
+
+console.log("👉 18. getFirstFive [1,2,3,4,5,6]:", getFirstFive([1, 2, 3, 4, 5, 6]));
+console.log("👉 19. reverseWords 'Learning JS Is Fun':", reverseWords("Learning JS Is Fun"));
+console.log("👉 20. mergeUnique [1,2] [2,3]:", mergeUnique([1, 2], [2, 3]));
+console.log("👉 21. sortDescending [5, 2, 9]:", sortDescending([5, 2, 9]));
 
 console.log("\n✅ ALL FOUNDATIONAL ESSENTIALS VERIFIED! ✅");
