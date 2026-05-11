@@ -32,9 +32,25 @@ function capitalizeWords(sentence) {
         .join(' ');
 }
 
-function countVowels(str) {
+// APPROACH 1: Built-in Regex Match (Shortest / Cleanest)
+function countVowelsRegex(str) {
     const matches = str.match(/[aeiou]/gi);
     return matches ? matches.length : 0;
+}
+
+// APPROACH 2: Manual Iteration Loop (Interview Best Practice - memory efficient)
+function countVowels(str) {
+    let count = 0;
+    const vowels = 'aeiouAEIOU';
+    for (let char of str) {
+        if (vowels.includes(char)) count++;
+    }
+    return count;
+}
+
+// APPROACH 3: Filter/Replace Method (Creative, useful for small subsets)
+function countVowelsReplace(str) {
+    return str.toLowerCase().replace(/[^aeiou]/g, '').length;
 }
 
 const uniqueChars = (str) => [...new Set(str)].join('');
