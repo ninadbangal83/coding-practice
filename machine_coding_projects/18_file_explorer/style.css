@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+body {
+  background: whitesmoke;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  color: #333;
+}
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 700px;
+}
+h2 {
+  color: royalblue;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+.subtitle {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+/* Explorer Specific Nested Tree Styles */
+#explorer-container {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  background: #fafafa;
+  height: 400px; /* Fix height to prevent dynamic card growth and Displacement Up */
+  overflow-y: auto;
+}
+
+.node-wrapper {
+  margin-left: 20px;
+}
+
+.node-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  gap: 8px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.node-item:hover {
+  background: rgba(65, 105, 225, 0.08);
+  color: royalblue;
+}
+
+.folder-item {
+  font-weight: 600;
+}
+
+.children-container {
+  display: none;
+  border-left: 1px dashed #ccc;
+}
+
+.children-container.visible {
+  display: block;
+}
+
+.icon {
+  font-size: 12px;
+  width: 16px;
+  text-align: center;
+  display: inline-block;
+}
+.icon-folder { color: #e8a838; }
+.icon-file { color: #666; }
