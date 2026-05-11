@@ -1,0 +1,88 @@
+// ======================================================
+// MODULE 2: ARRAY TRANSFORMATIONS
+// Scope: Massive manipulation, filtering, merging and finding.
+// ======================================================
+
+function findMaxDifference(arr) {
+    if (arr.length < 2) return 0;
+    let minVal = arr[0], maxVal = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < minVal) minVal = arr[i];
+        else if (arr[i] > maxVal) maxVal = arr[i];
+    }
+    return maxVal - minVal;
+}
+
+const removeFalsyValues = (arr) => arr.filter(Boolean);
+
+const removeDuplicates = (arr) => [...new Set(arr)];
+
+function cloneArrayManual(arr) {
+    const newArr = [];
+    for (let i = 0; i < arr.length; i++) newArr.push(arr[i]);
+    return newArr;
+}
+
+function findLargestInMixed(arr) {
+    const numbers = arr.filter(item => typeof item === 'number');
+    return numbers.length > 0 ? Math.max(...numbers) : -Infinity;
+}
+
+const mergeArrays = (arr1, arr2) => [...arr1, ...arr2];
+
+const doubleElements = (arr) => arr.map(x => x * 2);
+
+const getFirstFive = (arr) => arr.slice(0, 5);
+
+const mergeUnique = (arr1, arr2) => [...new Set([...arr1, ...arr2])];
+
+const sortDescending = (arr) => [...arr].sort((a, b) => b - a);
+
+function findIntersection(arr1, arr2) {
+    const set2 = new Set(arr2);
+    return arr1.filter(val => set2.has(val));
+}
+
+function findLargestNested(nested) {
+    const flat = nested.flat(Infinity);
+    return Math.max(...flat);
+}
+
+const nativeFlatten = (arr) => arr.flat(Infinity);
+
+function mergeAlternating(arr1, arr2) {
+    const res = [];
+    const maxLen = Math.max(arr1.length, arr2.length);
+    for (let i = 0; i < maxLen; i++) {
+        if (i < arr1.length) res.push(arr1[i]);
+        if (i < arr2.length) res.push(arr2[i]);
+    }
+    return res;
+}
+
+function findSecondLargest(arr) {
+    const unique = [...new Set(arr)].sort((a, b) => b - a);
+    return unique.length > 1 ? unique[1] : null;
+}
+
+// ======================================================
+// 🧪 UNIFIED TEST DASHBOARD: ARRAY MODULE
+// ======================================================
+console.log("\n--- 🧪 Running Array Transformations Dashboard ---");
+const run = (label, success) => console.log(`${success ? "✅" : "❌"} ${label}`);
+
+run("findMaxDiff [10, 2, 30] = 28", findMaxDifference([10, 2, 30]) === 28);
+run("removeFalsy", JSON.stringify(removeFalsyValues([0, 1, false, 2])) === "[1,2]");
+run("removeDuplicates", JSON.stringify(removeDuplicates([1,1,2])) === "[1,2]");
+run("cloneManual", JSON.stringify(cloneArrayManual([1,2])) === "[1,2]");
+run("findLargestMixed", findLargestInMixed([10, "a", 50]) === 50);
+run("mergeArrays", JSON.stringify(mergeArrays([1],[2])) === "[1,2]");
+run("doubleElements", JSON.stringify(doubleElements([2,4])) === "[4,8]");
+run("getFirstFive", JSON.stringify(getFirstFive([1,2,3,4,5,6])) === "[1,2,3,4,5]");
+run("mergeUnique", JSON.stringify(mergeUnique([1,2], [2,3])) === "[1,2,3]");
+run("sortDescending", JSON.stringify(sortDescending([5,2,9])) === "[9,5,2]");
+run("findIntersection", JSON.stringify(findIntersection([1,2], [2,3])) === "[2]");
+run("findLargestNested", findLargestNested([[1,2],[8,3]]) === 8);
+run("nativeFlatten", JSON.stringify(nativeFlatten([1,[2,[3]]])) === "[1,2,3]");
+run("mergeAlternating", JSON.stringify(mergeAlternating(['A','B'], [1,2])) === '["A",1,"B",2]');
+run("findSecondLargest", findSecondLargest([10, 20, 20, 5]) === 10);

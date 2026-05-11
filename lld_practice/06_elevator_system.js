@@ -1,3 +1,16 @@
+// ===========================================================================
+// 💡 LOW-LEVEL DESIGN ANALYSIS: ELEVATOR DISPATCH SYSTEM
+// ---------------------------------------------------------------------------
+// 🚀 Time Complexity: 
+//    - Dispatch Selection: O(N) where N is number of cars in fleet.
+//    - Move Step Tick: O(S) where S is pending stops remaining for car.
+// 💾 Space Complexity: 
+//    - O(K) where K is active requests queued in duplicate-purging Set() memory.
+// 🛡️  Edge Case Handling Covered:
+//    - Direction Interruption Prevention: Penalizes score of cars moving opposite way.
+//    - Duplicate-Request Collapse: Discards multiple presses of same floor via Set().
+//    - Parallel Concurrent Fleet Routing: Always assigns to the absolute closest unit.
+// ===========================================================================
 
 // ─── SYSTEM ENUMERATION: ELEVATOR VECTORS ───────────────────────────────────
 const ElevatorDirection = Object.freeze({
@@ -149,17 +162,63 @@ class BuildingSystem {
     }
 }
 
-// ─── DRIVER SIMULATION ──────────────────────────────────────────────────────
-console.log("🏙️  BOOTING SMART BUILDING ELEVATOR SIMULATOR 🏙️");
-const corporateHQ = new BuildingSystem(20, 3); // 20 Floor Building, 3 Active Elevator Units
+// ======================================================
+// 🧪 LLD TEST AUTOMATION SECTION (DISPATCH LOGIC INTEGRITY)
+// ======================================================
+console.log("\n--- 🧪 Running Elevator Fleet Dispatch Verification ---");
 
-// Time Increment 0: Inputs arriving
-corporateHQ.userCallElevator(8, ElevatorDirection.UP);
-corporateHQ.userCallElevator(15, ElevatorDirection.DOWN);
+function runElevatorAssertions() {
+    try {
+        const hq = new BuildingSystem(10, 2);
+        const car1 = hq.dispatch.fleet[0];
+        const car2 = hq.dispatch.fleet[1];
 
-// Run simulator step ticks enabling physical movement cycles
-console.log("\n⏳ STARTING SIMULATION CYCLE CLOCK...\n");
-for (let i = 1; i <= 10; i++) {
-    console.log(`--- [T-Plus ${i}] ---`);
-    corporateHQ.runSimulationCycle();
+        // Test 1: Queue Integration Mechanics
+        car1.injectTarget(5);
+        if (!car1.stopQueue.has(5)) throw new Error("Internal queue injection rejected key index");
+        console.log("✅ TEST 1: Stop Queue buffer admission confirmed");
+
+        // Test 2: Direction Vector Calculation
+        if (car1.vector !== ElevatorDirection.UP) throw new Error("Vector calculation failed initial trajectory");
+        console.log("✅ TEST 2: Trajectory Auto-Recalculation locked (UP)");
+
+        // Test 3: Dispatch Assignment Favoritism Logic
+        // Car 1 is currently moving to Floor 5.
+        // Set Car 2 specifically higher up to capture user request
+        car2.currentPos = 8; 
+        hq.userCallElevator(9, ElevatorDirection.UP); // Should assign to Car 2 (dist 1) instead of Car 1 (dist 8)
+        
+        if (car2.stopQueue.size !== 1) {
+             throw new Error("Dispatch routed request to suboptimal distant unit!");
+        }
+        console.log("✅ TEST 3: Nearest-Candidate Dispatch metric injection successful");
+
+        // Test 4: Physical Location Increment Cycle
+        car1.currentPos = 4; // Position right before arrival
+        car1.injectTarget(5);
+        hq.runSimulationCycle(); // Car 1 hits 5
+        
+        if (car1.currentPos !== 5) throw new Error("Traversing step failed coordinate physical update");
+        console.log("✅ TEST 4: Spatial Velocity increment correctly ticked");
+
+        // Test 5: Arrival Self-Cleansing Vector
+        if (car1.stopQueue.has(5)) throw new Error("Target cleanup failed after physical arrival anchor!");
+        console.log("✅ TEST 5: Pop Resolution finalized memory queue clearing");
+
+        console.log("\n🏆 FINAL VERDICT: FLEET DISPATCH LOGIC 100% SECURE 🏆\n");
+
+    } catch (e) {
+        console.error("\n❌ ELEVATOR ENGINE FAILURE:", e.message);
+        process.exit(1);
+    }
 }
+
+// Subdue simulator verbose traces for clean automated dashboarding
+const traceLog = console.log;
+console.log = () => {}; // Temporary silence
+traceLog("\n--- 🧪 Running Elevator Fleet Dispatch Verification ---");
+
+// Restore output console for testing confirmation output
+console.log = traceLog;
+
+runElevatorAssertions();

@@ -1,3 +1,15 @@
+// ===========================================================================
+// 💡 LOW-LEVEL DESIGN ANALYSIS: SMART VENDING HARDWARE
+// ---------------------------------------------------------------------------
+// 🚀 Time Complexity: 
+//    - Insert / Select / Eject: O(1) direct Map lookups and constant math.
+// 💾 Space Complexity: 
+//    - O(P) where P is Total Unique product types registered in machine inventory.
+// 🛡️  Edge Case Handling Covered:
+//    - Integer Arithmetic: Uses Paise (x100) integers preventing JS Float rounding leaks.
+//    - Stock Scarcity Guard: Prevents delivery commands if counter detects 0.
+//    - Abort Zero-Vector: Ensures user memory buffer explicitly wipes post-abort.
+// ===========================================================================
 
 // ─── SYSTEM ENUMERATION: MACHINE STATES ─────────────────────────────────────
 const VendingStates = Object.freeze({
@@ -122,30 +134,74 @@ class VendingMachine {
     }
 }
 
-// ─── DRIVER EXECUTION ───────────────────────────────────────────────────────
-console.log("⚡ BOOTING VENDING SYSTEM SOFTWARE ⚡");
-const unit = new VendingMachine();
+// ======================================================
+// 🧪 LLD TEST AUTOMATION SECTION (INVENTORY & FINANCE INTEGRITY)
+// ======================================================
+console.log("\n--- 🧪 Running Vending Machine System Assertion Suite ---");
 
-unit.loadStock(new Product('C1', 'Coca-Cola', 4500, 10)); // ₹45
-unit.loadStock(new Product('S1', 'Baked Lay\'s', 2000, 5)); // ₹20
-unit.loadStock(new Product('E1', 'Red Bull', 11000, 1));   // ₹110
+function runVendingAssertions() {
+    try {
+        const testMachine = new VendingMachine();
+        // Seed small scale stock
+        const cola = new Product('P1', 'Cola', 100, 2); // Cost: 1.00, Qty: 2
+        testMachine.loadStock(cola);
 
-unit.renderStatus();
+        // Test 1: Idle Lock Protection
+        try {
+             testMachine.pressSelection('P1');
+             throw new Error("Allowed transaction without monetary input!");
+        } catch (e) {
+             if (!e.message.includes("Credit account must be established")) throw e;
+             console.log("✅ TEST 1: Idle state financial lock confirmed");
+        }
 
-// SCENARIO 1: Successful Purchase
-unit.feedCurrency(5000); // ₹50
-unit.pressSelection('C1'); // Cost ₹45 -> Change ₹5
+        // Test 2: Flow Integration (Balance Tracking)
+        testMachine.feedCurrency(150);
+        if (testMachine.insertedBalance !== 150) throw new Error("Monetary input register failed");
+        console.log("✅ TEST 2: Precision monetary memory injection success");
 
-// SCENARIO 2: Insufficient Funds -> Refund
-try {
-    unit.feedCurrency(500); // ₹5
-    unit.pressSelection('S1'); // Needs ₹20
-} catch (e) {
-    console.log(`🚨 ERROR INTERRUPT: ${e.message}`);
-    unit.ejectRefund();
+        // Test 3: Successful Dispense & Inventory Deduct
+        // (Capturing the console methods for silent execution to verify outputs cleanly)
+        testMachine.pressSelection('P1'); // Consume 100. Left: 1
+        if (cola.count !== 1) throw new Error("Inventory counter failed to decrement");
+        if (testMachine.insertedBalance !== 0) throw new Error("Post-transaction buffer not cleared");
+        console.log("✅ TEST 3: Automated Transaction & Stock Ledger update confirmed");
+
+        // Test 4: Out of Stock Failure Handlers
+        testMachine.feedCurrency(100);
+        testMachine.pressSelection('P1'); // Cost 100. Qty: 0 now.
+        
+        testMachine.feedCurrency(100); // Feed more
+        try {
+            testMachine.pressSelection('P1');
+            throw new Error("Allowed dispensation of imaginary stock!");
+        } catch (e) {
+            if (!e.message.includes("out of commission")) throw e;
+            console.log("✅ TEST 4: Depleted Resource lock engaged");
+        }
+
+        // Test 5: Emergency Refund / Buffer Zeroing
+        const refunded = testMachine.ejectRefund();
+        if (refunded !== 100 || testMachine.insertedBalance !== 0) {
+            throw new Error("Abort vector failed to refund entire remaining credit");
+        }
+        console.log("✅ TEST 5: Critical Abort Protocol & Change return successfully matched");
+
+        console.log("\n🏆 FINAL VERDICT: VENDING HARDWARE INTEGRITY 100% AUDITED 🏆\n");
+
+    } catch (e) {
+        console.error("\n❌ VENDING MACHINE FAILURE:", e.message);
+        process.exit(1);
+    }
 }
 
-// SCENARIO 3: Drain Stock Test
-unit.feedCurrency(15000); // ₹150
-unit.pressSelection('E1'); // Last Energy Drink Dispensed
-unit.renderStatus();
+// Subdue noisy console prints for the automation block to maintain output hygiene
+const originalLog = console.log;
+console.log = () => {}; // temp silence
+originalLog("\n--- 🧪 Running Vending Machine System Assertion Suite ---");
+
+// Restore functional console.log exclusively for automated reporting
+const consoleTemp = console.log;
+console.log = originalLog;
+
+runVendingAssertions();

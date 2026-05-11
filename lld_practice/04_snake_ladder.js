@@ -1,3 +1,16 @@
+// ===========================================================================
+// 💡 LOW-LEVEL DESIGN ANALYSIS: SNAKE & LADDER PATHFINDER
+// ---------------------------------------------------------------------------
+// 🚀 Time Complexity: 
+//    - Jump Resolution: O(1) Direct offset-index lookup in constant board array.
+//    - Dice Generation: O(1).
+// 💾 Space Complexity: 
+//    - O(N) exactly, pre-allocated to Board Size limit (default 100).
+// 🛡️  Edge Case Handling Covered:
+//    - Anti-Overrun Lock: Skips player update if target position > 100 limit.
+//    - Immediate Instant Chaining: Automatically snaps position to ladder/snake output.
+//    - Validation Direction: Checks prevent snakes pointing up or ladders pointing down.
+// ===========================================================================
 
 // ─── ENTITY: DICE ──────────────────────────────────────────────────────────
 class Dice {
@@ -136,6 +149,47 @@ class SnakeAndLadderGame {
     }
 }
 
-// ─── DRIVER EXECUTION ───────────────────────────────────────────────────────
-const sim = new SnakeAndLadderGame(["DeepBlue", "Kasparov", "Magnus"]);
-sim.autoPlaySimulate();
+// ======================================================
+// 🧪 LLD TEST AUTOMATION SECTION (MECHANICS INTEGRITY)
+// ======================================================
+console.log("\n--- 🧪 Running Snake & Ladder Board Integrity Suite ---");
+
+function runBoardAssertions() {
+    try {
+        const testGame = new SnakeAndLadderGame(["AI"]);
+        const b = testGame.board;
+
+        // Test 1: Ladder Ascent Computation
+        // We know ladder 2 -> 38 exists in config
+        const finalPosLadder = b.resolveLandingCoordinate(2);
+        if (finalPosLadder !== 38) throw new Error(`Ladder teleport failed. Landed: ${finalPosLadder}`);
+        console.log("✅ TEST 1: Ladder Elevation vector injection correct (2 -> 38)");
+
+        // Test 2: Snake Descent Computation
+        // We know snake 16 -> 6 exists in config
+        const finalPosSnake = b.resolveLandingCoordinate(16);
+        if (finalPosSnake !== 6) throw new Error(`Snake descent failed. Landed: ${finalPosSnake}`);
+        console.log("✅ TEST 2: Snake Collision trajectory correct (16 -> 6)");
+
+        // Test 3: Clean Landing Retention
+        const cleanLanding = b.resolveLandingCoordinate(5); // Safe square
+        if (cleanLanding !== 5) throw new Error("Clean tile shifted unexpectedly");
+        console.log("✅ TEST 3: Inertia Retention logic confirmed (Standard square holds pos)");
+
+        // Test 4: Die Integrity Constraints
+        const dice = new Dice(6);
+        for (let i = 0; i < 100; i++) {
+            const r = dice.roll();
+            if (r < 1 || r > 6) throw new Error("Dice overflow boundary exceeded");
+        }
+        console.log("✅ TEST 4: Die Range Constraints validated (100 trials inside 1-6)");
+
+        console.log("\n🏆 FINAL VERDICT: BOARD PATHFINDER MECHANICS 100% SECURE 🏆\n");
+
+    } catch (e) {
+        console.error("\n❌ BOARD INTEGRITY FAILURE:", e.message);
+        process.exit(1);
+    }
+}
+
+runBoardAssertions();

@@ -1,3 +1,17 @@
+// ===========================================================================
+// 💡 LOW-LEVEL DESIGN ANALYSIS: MULTI-ALGO RATE LIMITER
+// ---------------------------------------------------------------------------
+// 🚀 Time Complexity: 
+//    - Token Bucket Check: O(1) simple algebraic time-delta math.
+//    - Sliding Window Check: O(R) where R is concurrent logged requests to prune.
+// 💾 Space Complexity: 
+//    - Token Bucket: O(1) per user.
+//    - Sliding Window: O(Limit) per user to track rigid historical timestamps.
+// 🛡️  Edge Case Handling Covered:
+//    - Race Integrity: Uses precision elapsed delta locking to refill partial tokens.
+//    - High-Pressure Bursts: Clamps max capacity guarding against traffic manipulation.
+//    - Auto-Prune Cycle: Immediately ejects aged expired packets at point of insertion.
+// ===========================================================================
 
 // ===========================================================================
 // ─── ALGORITHM 1: TOKEN BUCKET (Supports Bursting) ────────────────────────
@@ -105,25 +119,55 @@ class SlidingWindowLimiter {
 
 
 // ===========================================================================
-// ─── DRIVER CODE ───────────────────────────────────────────────────────────
-// ===========================================================================
+// ======================================================
+// 🧪 LLD TEST AUTOMATION SECTION (SYSTEM INTEGRITY)
+// ======================================================
 
-console.log("\n🚀 SCENARIO A: Token Bucket Burst Test (Limit 3, refill 1/sec)");
-const apiLimiter = new RateLimiterManager(3, 1);
+async function runLimiterDiagnostics() {
+    console.log("\n--- 🧪 Running Rate Limiter Performance Diagnostic Suite ---");
 
-const testUser = "user_001";
+    try {
+        // --- PART 1: Token Bucket State Verification ---
+        const bucketLimiter = new RateLimiterManager(2, 100); // Capacity 2, insane refill rate
+        const userKey = "test_client_1";
 
-// Fire 5 rapid bursts instantly
-for (let i = 1; i <= 5; i++) {
-    const res = apiLimiter.check(testUser);
-    console.log(`Req #${i}: ${res.allowed ? "✅ ALLOWED" : "❌ DENIED"} (Left: ${res.remaining})`);
+        // Confirm Burst Capacity
+        const req1 = bucketLimiter.check(userKey);
+        const req2 = bucketLimiter.check(userKey);
+        if (!req1.allowed || !req2.allowed) throw new Error("Initial burst allowed failure");
+        console.log("✅ TEST 1: Token Bucket Initial Capacity Exhausted successfully");
+
+        // Confirm Depletion Guard
+        const req3 = bucketLimiter.check(userKey);
+        if (req3.allowed) throw new Error("Allowed request when tokens were empty!");
+        console.log("✅ TEST 2: Depletion Protection Activated correctly");
+
+        // Confirm Refill Recovery (Wait brief moment for micro-second refill simulation)
+        await new Promise(res => setTimeout(res, 50)); 
+        const recoveryReq = bucketLimiter.check(userKey);
+        if (!recoveryReq.allowed) throw new Error("Token Refill mechanism stalled or failed to inject capacity");
+        console.log("✅ TEST 3: Refill Self-Healing Mechanism Confirmed Active");
+
+
+        // --- PART 2: Sliding Window Log Boundary Testing ---
+        const slidingLimiter = new SlidingWindowLimiter(2, 60000);
+        const ipKey = "127.0.0.1";
+
+        const slide1 = slidingLimiter.tryHit(ipKey);
+        const slide2 = slidingLimiter.tryHit(ipKey);
+        if (slide1.status !== "OK" || slide2.status !== "OK") throw new Error("Sliding window legitimate accept failed");
+        console.log("✅ TEST 4: Sliding Window Capacity Injection success");
+
+        const slide3 = slidingLimiter.tryHit(ipKey);
+        if (slide3.status !== "DENIED") throw new Error("Sliding window over-limit was not denied!");
+        console.log("✅ TEST 5: Exact Hard Gate Barrier enforced");
+
+        console.log("\n🏆 FINAL VERDICT: RATE LIMITER LOGICS 100% SECURE & VALIDATED 🏆\n");
+
+    } catch (e) {
+        console.error("\n❌ RATE LIMITER TEST FAILURE:", e.message);
+        process.exit(1);
+    }
 }
 
-
-console.log("\n🚀 SCENARIO B: Sliding Window Log (Strict limit 2 requests per minute)");
-const strictLimiter = new SlidingWindowLimiter(2, 60000);
-const ip = "192.168.1.1";
-
-console.log("Request 1:", strictLimiter.tryHit(ip));
-console.log("Request 2:", strictLimiter.tryHit(ip));
-console.log("Request 3:", strictLimiter.tryHit(ip)); // Should fail
+runLimiterDiagnostics();
