@@ -1,0 +1,61 @@
+/* Base styles aligning with existing components */
+.react-card.explorer-card {
+    max-width: 700px;
+}
+
+.explorer-viewport {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    background: #fafafa;
+    height: 400px; /* Matches fixed height solution */
+    overflow-y: auto;
+    margin-top: 15px;
+}
+
+.node-wrap {
+    margin-left: 20px;
+}
+
+.node-row {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    gap: 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.node-row:hover {
+    background: rgba(65, 105, 225, 0.08);
+    color: royalblue;
+}
+
+.is-folder {
+    font-weight: 600;
+}
+
+.caret-icon {
+    font-size: 10px;
+    width: 16px;
+    text-align: center;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.caret-icon.expanded {
+    transform: rotate(90deg);
+}
+
+.type-icon {
+    font-size: 14px;
+}
+
+.type-icon.folder { color: #e8a838; }
+.type-icon.file { color: #999; }
+
+.sub-level {
+    border-left: 1px dashed #ddd;
+}

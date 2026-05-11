@@ -17,6 +17,7 @@ import InfiniteScroll from './components/14_InfiniteScroll/InfiniteScroll';
 import ThrottledClick from './components/15_ThrottledClick/ThrottledClick';
 import DebouncedSearch from './components/16_DebouncedSearch/DebouncedSearch';
 import NestedComments from './components/17_NestedComments/NestedComments';
+import FileExplorer from './components/18_FileExplorer/FileExplorer';
 
 // Master Registry of all challenges
 const PROJECTS = [
@@ -37,6 +38,7 @@ const PROJECTS = [
   { id: '15', title: '15. Throttled Click', component: <ThrottledClick /> },
   { id: '16', title: '16. Debounced Search', component: <DebouncedSearch /> },
   { id: '17', title: '17. Nested Comments', component: <NestedComments /> },
+  { id: '18', title: '18. File Explorer', component: <FileExplorer /> },
 ];
 
 function App() {
