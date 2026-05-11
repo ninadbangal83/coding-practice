@@ -60,9 +60,33 @@ function mergeAlternating(arr1, arr2) {
     return res;
 }
 
-function findSecondLargest(arr) {
+// APPROACH 1: Sorting Method - O(N log N) Time | Readable but slower
+function findSecondLargestSorting(arr) {
     const unique = [...new Set(arr)].sort((a, b) => b - a);
     return unique.length > 1 ? unique[1] : null;
+}
+
+// APPROACH 2: Filter Method - O(N) Time | Clever but creates extra array in memory
+function findSecondLargestFilter(arr) {
+    const max = Math.max(...arr);
+    const filtered = arr.filter(val => val !== max);
+    return filtered.length > 0 ? Math.max(...filtered) : null;
+}
+
+// APPROACH 3 (WINNER): Single Pass - O(N) Time, O(1) Space | Fastest and most memory-efficient
+function findSecondLargest(arr) {
+    let first = -Infinity;
+    let second = -Infinity;
+
+    for (let num of arr) {
+        if (num > first) {
+            second = first;
+            first = num;
+        } else if (num > second && num !== first) {
+            second = num;
+        }
+    }
+    return second === -Infinity ? null : second;
 }
 
 // ======================================================
