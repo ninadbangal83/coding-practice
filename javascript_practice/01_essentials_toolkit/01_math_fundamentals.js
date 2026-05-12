@@ -30,6 +30,15 @@ function fibonacciSequence(n) {
     return sequence;
 }
 
+function fibonacciRecursive(n) {
+    if (n <= 0) return [];
+    if (n === 1) return [0];
+    if (n === 2) return [0, 1];
+    const sequence = fibonacciRecursive(n - 1);
+    sequence.push(sequence[sequence.length - 1] + sequence[sequence.length - 2]);
+    return sequence;
+}
+
 function calculateAverage(arr) {
     if (!arr.length) return 0;
     return arr.reduce((s, n) => s + n, 0) / arr.length;
@@ -54,5 +63,6 @@ runTest("isPrime (17 = true)", isPrime(17) === true);
 runTest("isPrime (4 = false)", isPrime(4) === false);
 runTest("factorial (5 = 120)", factorial(5) === 120);
 runTest("fibonacci (len 6)", JSON.stringify(fibonacciSequence(6)) === JSON.stringify([0, 1, 1, 2, 3, 5]));
+runTest("fibonacciRecursive (len 6)", JSON.stringify(fibonacciRecursive(6)) === JSON.stringify([0, 1, 1, 2, 3, 5]));
 runTest("calculateAverage [10, 20, 30]", calculateAverage([10, 20, 30]) === 20);
 runTest("sumArray [1, 2, 3, 4]", sumArray([1, 2, 3, 4]) === 10);
