@@ -15,9 +15,19 @@ function isPrime(num) {
     return true;
 }
 
-function factorial(n) {
+function factorialIterative(n) {
+    if (n < 0) return undefined;
+    let result = 1;
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+function factorialRecursive(n) {
+    if (n < 0) return undefined;
     if (n <= 1) return 1;
-    return n * factorial(n - 1);
+    return n * factorialRecursive(n - 1);
 }
 
 function fibonacciSequence(n) {
@@ -61,7 +71,8 @@ const runTest = (label, success) => {
 runTest("calcPower (3^4 = 81)", calcPower(3, 4) === 81);
 runTest("isPrime (17 = true)", isPrime(17) === true);
 runTest("isPrime (4 = false)", isPrime(4) === false);
-runTest("factorial (5 = 120)", factorial(5) === 120);
+runTest("factorialIterative (5 = 120)", factorialIterative(5) === 120);
+runTest("factorialRecursive (5 = 120)", factorialRecursive(5) === 120);
 runTest("fibonacci (len 6)", JSON.stringify(fibonacciSequence(6)) === JSON.stringify([0, 1, 1, 2, 3, 5]));
 runTest("fibonacciRecursive (len 6)", JSON.stringify(fibonacciRecursive(6)) === JSON.stringify([0, 1, 1, 2, 3, 5]));
 runTest("calculateAverage [10, 20, 30]", calculateAverage([10, 20, 30]) === 20);
