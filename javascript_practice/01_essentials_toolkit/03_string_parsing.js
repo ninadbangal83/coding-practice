@@ -55,6 +55,16 @@ function countVowelsReplace(str) {
 
 const uniqueChars = (str) => [...new Set(str)].join('');
 
+function camelToSnake(str) {
+    return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+}
+
+function truncateString(str, limit) {
+    if (str.length <= limit) return str;
+    return str.slice(0, limit) + "...";
+}
+
+
 // ======================================================
 // 🧪 UNIFIED TEST DASHBOARD: STRING MODULE
 // ======================================================
@@ -70,3 +80,6 @@ test("firstNonRepeated 'swiss'", firstNonRepeated("swiss") === 'w');
 test("capitalizeWords 'hi there'", capitalizeWords("hi there") === "Hi There");
 test("countVowels 'hello'", countVowels("hello") === 2);
 test("uniqueChars 'geeks'", uniqueChars("geeks") === "geks");
+test("camelToSnake 'camelCase'", camelToSnake("camelCase") === "camel_case");
+test("truncateString 'Hello World' (5)", truncateString("Hello World", 5) === "Hello...");
+

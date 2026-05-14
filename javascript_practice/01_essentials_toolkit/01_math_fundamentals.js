@@ -58,6 +58,32 @@ function sumArray(arr) {
     return arr.reduce((acc, current) => acc + current, 0);
 }
 
+function roundToDecimal(num, precision = 2) {
+    const factor = 10 ** precision;
+    return Math.round((num + Number.EPSILON) * factor) / factor;
+}
+
+function getRandomRange(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function reverseInteger(n) {
+    let reversed = 0;
+    let num = Math.abs(n);
+    while (num > 0) {
+        reversed = (reversed * 10) + (num % 10);
+        num = Math.floor(num / 10);
+    }
+    return reversed * Math.sign(n);
+}
+
+function isPowerOfTwo(n) {
+    return n > 0 && (n & (n - 1)) === 0;
+}
+
+
 // ======================================================
 // 🧪 UNIFIED TEST DASHBOARD: MATH MODULE
 // ======================================================
@@ -77,3 +103,10 @@ runTest("fibonacci (len 6)", JSON.stringify(fibonacciSequence(6)) === JSON.strin
 runTest("fibonacciRecursive (len 6)", JSON.stringify(fibonacciRecursive(6)) === JSON.stringify([0, 1, 1, 2, 3, 5]));
 runTest("calculateAverage [10, 20, 30]", calculateAverage([10, 20, 30]) === 20);
 runTest("sumArray [1, 2, 3, 4]", sumArray([1, 2, 3, 4]) === 10);
+runTest("roundToDecimal (0.1 + 0.2 = 0.3)", roundToDecimal(0.1 + 0.2, 1) === 0.3);
+const rand = getRandomRange(5, 10);
+runTest("getRandomRange [5, 10]", rand >= 5 && rand <= 10);
+runTest("reverseInteger (-123 = -321)", reverseInteger(-123) === -321);
+runTest("isPowerOfTwo (16 = true)", isPowerOfTwo(16) === true);
+runTest("isPowerOfTwo (18 = false)", isPowerOfTwo(18) === false);
+
