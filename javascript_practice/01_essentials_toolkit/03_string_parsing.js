@@ -8,7 +8,7 @@ function isPalindrome(str) {
     return clean === clean.split('').reverse().join('');
 }
 
-const reverseString = (str) => str.split('').reverse().join('');
+const reverseString = (str) => [...str].reverse().join('');
 
 function areAnagrams(str1, str2) {
     const norm = (s) => s.toLowerCase().replace(/[^a-z]/g, '').split('').sort().join('');
@@ -17,7 +17,7 @@ function areAnagrams(str1, str2) {
 
 const joinToSentence = (arr) => arr.join(' ');
 
-const reverseWords = (sentence) => sentence.split(' ').reverse().join(' ');
+const reverseWords = (sentence) => sentence.trim().split(/\s+/).reverse().join(' ');
 
 function firstNonRepeated(str) {
     const map = {};
@@ -28,7 +28,7 @@ function firstNonRepeated(str) {
 
 function capitalizeWords(sentence) {
     return sentence.split(' ')
-        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
         .join(' ');
 }
 
@@ -56,7 +56,7 @@ function countVowelsReplace(str) {
 const uniqueChars = (str) => [...new Set(str)].join('');
 
 function camelToSnake(str) {
-    return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+    return str.replace(/(?!^)[A-Z]/g, (letter) => `_${letter.toLowerCase()}`).toLowerCase();
 }
 
 function truncateString(str, limit) {
@@ -72,14 +72,14 @@ console.log("\n--- 🧪 Running String Parsing Dashboard ---");
 const test = (label, val) => console.log(`${val ? "✅" : "❌"} ${label}`);
 
 test("isPalindrome 'racecar'", isPalindrome("racecar") === true);
-test("reverseString 'hello'", reverseString("hello") === "olleh");
+test("reverseString 'pizza🍕'", reverseString("pizza🍕") === "🍕azzip");
 test("areAnagrams 'listen'/'silent'", areAnagrams("listen", "silent") === true);
 test("joinToSentence ['A','B']", joinToSentence(['A', 'B']) === "A B");
-test("reverseWords 'I am'", reverseWords("I am") === "am I");
+test("reverseWords '  I  am  '", reverseWords("  I  am  ") === "am I");
 test("firstNonRepeated 'swiss'", firstNonRepeated("swiss") === 'w');
-test("capitalizeWords 'hi there'", capitalizeWords("hi there") === "Hi There");
+test("capitalizeWords 'hElLo there'", capitalizeWords("hElLo there") === "Hello There");
 test("countVowels 'hello'", countVowels("hello") === 2);
 test("uniqueChars 'geeks'", uniqueChars("geeks") === "geks");
-test("camelToSnake 'camelCase'", camelToSnake("camelCase") === "camel_case");
+test("camelToSnake 'CamelCase'", camelToSnake("CamelCase") === "camel_case");
 test("truncateString 'Hello World' (5)", truncateString("Hello World", 5) === "Hello...");
 

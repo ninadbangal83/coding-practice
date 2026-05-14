@@ -1,137 +1,92 @@
 // ======================================================
-// MODULE 2: ARRAY TRANSFORMATIONS
-// Scope: Massive manipulation, filtering, merging and finding.
+// MODULE 3: STRING PARSING
+// Scope: Sentence structure, vowel mechanics, case management.
 // ======================================================
 
-function findMaxDifference(arr) {
+function isPalindrome(str) {
     // Write your code here
-    let min = arr[0];
-    let max = arr[0];
+    const clean = str.toLowerCase().replace(/[^a-z0-9]/g, "");
+    return clean === clean.split('').reverse().join('');
+}
 
-    for (let num of arr) {
-        if (min > num) { min = num; }
-        else if (max < num) {
-            max = num
-        }
+function reverseString(str) {
+    // Write your code here
+    return [...str].reverse().join('');
+}
+
+function areAnagrams(str1, str2) {
+    // Write your code here
+    const norm = (str) => str.toLowerCase().replace(/[^a-z]/g, "").split('').sort().join('');
+    return norm(str1) === norm(str2)
+
+}
+
+function joinToSentence(arr) {
+    // Write your code here
+    return arr.join(" ")
+}
+
+function reverseWords(sentence) {
+    // Write your code here
+    return sentence.trim().split(/\s+/).reverse().join(' ');
+}
+
+function firstNonRepeated(str) {
+    // Write your code here
+    const map ={};
+    for(let char of str) {
+        map[char] = (map[char] || 0) + 1
     }
-    return max - min;
-}
-
-function removeFalsyValues(arr) {
-    // Write your code here
-    return arr.filter((e) => Boolean(e))
-}
-
-function removeDuplicates(arr) {
-    // Write your code here
-    return [...new Set(arr)]
-}
-
-function cloneArrayManual(arr) {
-    // Write your code here
-    return [...arr]
-}
-
-function findLargestInMixed(arr) {
-    // Write your code here
-    return Math.max(...arr.filter((e) => typeof e === 'number' ))
-}
-
-function mergeArrays(arr1, arr2) {
-    // Write your code here
-    return [...arr1, ...arr2];
-}
-
-function doubleElements(arr) {
-    // Write your code here
-    return arr.map((e) => e * 2);
-}
-
-function getFirstFive(arr) {
-    // Write your code here
-    return arr.slice(0, 5)
-}
-
-function mergeUnique(arr1, arr2) {
-    // Write your code here
-    return [...new Set([...arr1, ...arr2])];
-}
-
-function sortDescending(arr) {
-    // Write your code here
-    return arr.sort((a, b) => b-a)
-}
-
-function findIntersection(arr1, arr2) {
-    // Write your code here
-    const set = new Set(arr2);
-    return arr1.filter((e) => set.has(e))
-}
-
-function findLargestNested(nested) {
-    // Write your code here
-    return Math.max(...nested.flat(Infinity))
-}
-
-function nativeFlatten(arr) {
-    // Write your code here
-    return arr.flat(Infinity)
-}
-
-function mergeAlternating(arr1, arr2) {
-    // Write your code here
-    const merged =[];
-    const maxLen = Math.max(arr1.length, arr2.length);
-    for(let i=0; i<maxLen; i++) {
-        if(i<arr1.length) {
-            merged.push(arr1[i])
-        }
-        if(i<arr2.length) {
-            merged.push(arr2[i])
-        }
+    for(let char of str) {
+        if(map[char] === 1) return char;
     }
-    return merged;
+    return null;
 }
 
-function findSecondLargest(arr) {
+function capitalizeWords(sentence) {
     // Write your code here
-    let first = -Infinity;
-    let second = -Infinity;
+    return sentence.split(' ').map((e) => e.charAt(0).toUpperCase() + e.slice(1).toLowerCase()).join(' ');
+}
 
-    for(let num of arr) {
-        if(num > first) {
-            second = first;
-            first = num;
-        } else if( num > second && num !== first) {
-            second = num;
-        }
+function countVowels(str) {
+    // Write your code here
+    return str.toLowerCase().replace(/[^aeiou]/g, '').length;
+}
 
-    }
-    return second !== -Infinity? second: null;
+function uniqueChars(str) {
+    // Write your code here
+    return [...new Set(str.split(''))].join('')
+}
+
+function camelToSnake(str) {
+    // Write your code here
+    return str.replace(/(?!^)[A-Z]/g, (letter) => `_${letter.toLowerCase()}`).toLowerCase();
+}
+
+function truncateString(str, limit) {
+    // Write your code here
+    if(str.length <= limit) return str;
+    return str.slice(0, limit) + '...'
 }
 
 // ======================================================
-// 🧪 UNIFIED TEST DASHBOARD: ARRAY MODULE
+// 🧪 UNIFIED TEST DASHBOARD: STRING MODULE
 // ======================================================
-console.log("\n--- 🧪 Running Array Transformations Dashboard ---");
-const run = (label, success) => console.log(`${success ? "✅" : "❌"} ${label}`);
+console.log("\n--- 🧪 Running String Parsing Dashboard ---");
+const test = (label, val) => console.log(`${val ? "✅" : "❌"} ${label}`);
 
 try {
-    run("findMaxDiff [10, 2, 30] = 28", findMaxDifference([10, 2, 30]) === 28);
-    run("removeFalsy", JSON.stringify(removeFalsyValues([0, 1, false, 2])) === "[1,2]");
-    run("removeDuplicates", JSON.stringify(removeDuplicates([1, 1, 2])) === "[1,2]");
-    run("cloneManual", JSON.stringify(cloneArrayManual([1, 2])) === "[1,2]");
-    run("findLargestMixed", findLargestInMixed([10, "a", 50]) === 50);
-    run("mergeArrays", JSON.stringify(mergeArrays([1], [2])) === "[1,2]");
-    run("doubleElements", JSON.stringify(doubleElements([2, 4])) === "[4,8]");
-    run("getFirstFive", JSON.stringify(getFirstFive([1, 2, 3, 4, 5, 6])) === "[1,2,3,4,5]");
-    run("mergeUnique", JSON.stringify(mergeUnique([1, 2], [2, 3])) === "[1,2,3]");
-    run("sortDescending", JSON.stringify(sortDescending([5, 2, 9])) === "[9,5,2]");
-    run("findIntersection", JSON.stringify(findIntersection([1, 2], [2, 3])) === "[2]");
-    run("findLargestNested", findLargestNested([[1, 2], [8, 3]]) === 8);
-    run("nativeFlatten", JSON.stringify(nativeFlatten([1, [2, [3]]])) === "[1,2,3]");
-    run("mergeAlternating", JSON.stringify(mergeAlternating(['A', 'B'], [1, 2])) === '["A",1,"B",2]');
-    run("findSecondLargest", findSecondLargest([10, 20, 20, 5]) === 10);
+    test("isPalindrome 'racecar'", isPalindrome("racecar") === true);
+    test("reverseString 'pizza🍕'", reverseString("pizza🍕") === "🍕azzip");
+    test("areAnagrams 'listen'/'silent'", areAnagrams("listen", "silent") === true);
+    test("joinToSentence ['A','B']", joinToSentence(['A', 'B']) === "A B");
+    test("reverseWords '  I  am  '", reverseWords("  I  am  ") === "am I");
+    test("firstNonRepeated 'swiss'", firstNonRepeated("swiss") === 'w');
+    test("capitalizeWords 'hElLo there'", capitalizeWords("hElLo there") === "Hello There");
+    test("countVowels 'hello'", countVowels("hello") === 2);
+    test("uniqueChars 'geeks'", uniqueChars("geeks") === "geks");
+    test("camelToSnake 'CamelCase'", camelToSnake("CamelCase") === "camel_case");
+    test("truncateString 'Hello World' (5)", truncateString("Hello World", 5) === "Hello...");
 } catch (e) {
     console.error("Runtime error in tests:", e.message);
 }

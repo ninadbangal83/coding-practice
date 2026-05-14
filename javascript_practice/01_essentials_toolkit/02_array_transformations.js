@@ -24,7 +24,7 @@ function cloneArrayManual(arr) {
 }
 
 function findLargestInMixed(arr) {
-    const numbers = arr.filter(item => typeof item === 'number');
+    const numbers = arr.filter(item => typeof item === 'number' && !Number.isNaN(item));
     return numbers.length > 0 ? Math.max(...numbers) : -Infinity;
 }
 
@@ -40,12 +40,12 @@ const sortDescending = (arr) => [...arr].sort((a, b) => b - a);
 
 function findIntersection(arr1, arr2) {
     const set2 = new Set(arr2);
-    return arr1.filter(val => set2.has(val));
+    return [...new Set(arr1)].filter(val => set2.has(val));
 }
 
 function findLargestNested(nested) {
     const flat = nested.flat(Infinity);
-    return Math.max(...flat);
+    return flat.reduce((max, val) => val > max ? val : max, -Infinity);
 }
 
 const nativeFlatten = (arr) => arr.flat(Infinity);
@@ -99,14 +99,14 @@ run("findMaxDiff [10, 2, 30] = 28", findMaxDifference([10, 2, 30]) === 28);
 run("removeFalsy", JSON.stringify(removeFalsyValues([0, 1, false, 2])) === "[1,2]");
 run("removeDuplicates", JSON.stringify(removeDuplicates([1,1,2])) === "[1,2]");
 run("cloneManual", JSON.stringify(cloneArrayManual([1,2])) === "[1,2]");
-run("findLargestMixed", findLargestInMixed([10, "a", 50]) === 50);
+run("findLargestMixed (NaN safe)", findLargestInMixed([10, NaN, 50]) === 50);
 run("mergeArrays", JSON.stringify(mergeArrays([1],[2])) === "[1,2]");
 run("doubleElements", JSON.stringify(doubleElements([2,4])) === "[4,8]");
 run("getFirstFive", JSON.stringify(getFirstFive([1,2,3,4,5,6])) === "[1,2,3,4,5]");
 run("mergeUnique", JSON.stringify(mergeUnique([1,2], [2,3])) === "[1,2,3]");
 run("sortDescending", JSON.stringify(sortDescending([5,2,9])) === "[9,5,2]");
-run("findIntersection", JSON.stringify(findIntersection([1,2], [2,3])) === "[2]");
-run("findLargestNested", findLargestNested([[1,2],[8,3]]) === 8);
+run("findIntersection (Unique)", JSON.stringify(findIntersection([1,1,2], [2,3])) === "[2]");
+run("findLargestNested (Memory Safe)", findLargestNested([[1,2],[8,3]]) === 8);
 run("nativeFlatten", JSON.stringify(nativeFlatten([1,[2,[3]]])) === "[1,2,3]");
 run("mergeAlternating", JSON.stringify(mergeAlternating(['A','B'], [1,2])) === '["A",1,"B",2]');
 run("findSecondLargest", findSecondLargest([10, 20, 20, 5]) === 10);
