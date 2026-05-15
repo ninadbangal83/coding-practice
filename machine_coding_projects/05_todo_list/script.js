@@ -13,13 +13,18 @@ const addTask = () => {
         <button class="del-btn">×</button>
     `;
     
-    // Inline scope listener binding per element (efficient for small lists)
-    li.querySelector('.del-btn').addEventListener('click', () => li.remove());
-
     list.appendChild(li);
     input.value = ''; // Clear
     input.focus();
 };
+
+// 🎯 Master Event Delegation: Handles deletion and scalable click operations
+list.addEventListener('click', (e) => {
+    const delBtn = e.target.closest('.del-btn');
+    if (delBtn) {
+        delBtn.closest('.todo-item').remove();
+    }
+});
 
 // Bind Button Click
 addBtn.addEventListener('click', addTask);
